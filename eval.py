@@ -10,7 +10,6 @@ from net.CIDNet import CIDNet
 
 eval_parser = argparse.ArgumentParser(description='Eval')
 eval_parser.add_argument('--perc', action='store_true', help='trained with perceptual loss')
-eval_parser.add_argument('--own', action='store_true', help='output SelfBuiltDataset dataset')
 eval_parser.add_argument('--lol', action='store_true', help='output lolv1 dataset')
 eval_parser.add_argument('--lol_v2_real', action='store_true', help='output lol_v2_real dataset')
 eval_parser.add_argument('--lol_v2_syn', action='store_true', help='output lol_v2_syn dataset')
@@ -92,7 +91,7 @@ if __name__ == '__main__':
     alpha = None
 
     if ep.own:
-        eval_data = DataLoader(dataset=get_eval_set("HVI-CIDNet-master/datasets/SelfBuiltDataset/eval15/low"), num_workers=num_workers, batch_size=1, shuffle=False)
+        eval_data = DataLoader(dataset=get_eval_set("./datasets/SelfBuiltDataset/eval15/low"), num_workers=num_workers, batch_size=1, shuffle=False)
         output_folder = './output/SelfBuiltDataset/'
         if ep.perc:
             weight_path = './weights/MyLOLv1/CIDNet+GateFre/epoch_220_best_psnr.pth'
@@ -100,7 +99,7 @@ if __name__ == '__main__':
             weight_path = './weights/MyLOLv1/CIDNet+GateFre/epoch_220_best_psnr.pth'
 
     elif ep.lol:
-        eval_data = DataLoader(dataset=get_eval_set("HVI-CIDNet-master/datasets/LOLdataset/eval15/low"), num_workers=num_workers, batch_size=1, shuffle=False)
+        eval_data = DataLoader(dataset=get_eval_set("./datasets/LOLdataset/eval15/low"), num_workers=num_workers, batch_size=1, shuffle=False)
         output_folder = './output/LOLv1/'
         if ep.perc:
             weight_path = './weights/LOLv1/w_perc.pth'
@@ -108,7 +107,7 @@ if __name__ == '__main__':
             weight_path = './weights/MyLOLv1/LOLv1/epoch_620.pth'
 
     elif ep.lol_v2_real:
-        eval_data = DataLoader(dataset=get_eval_set("HVI-CIDNet-master/datasets/LOLv2/Real_captured/Test/Low"), num_workers=num_workers, batch_size=1, shuffle=False)
+        eval_data = DataLoader(dataset=get_eval_set("./datasets/LOLv2/Real_captured/Test/Low"), num_workers=num_workers, batch_size=1, shuffle=False)
         output_folder = './output/LOLv2_real/'
         if ep.best_GT_mean:
             weight_path = './weights/LOLv2_real/w_perc.pth'
@@ -121,7 +120,7 @@ if __name__ == '__main__':
             alpha = 0.82
             
     elif ep.lol_v2_syn:
-        eval_data = DataLoader(dataset=get_eval_set("HVI-CIDNet-master/datasets/LOLv2/Synthetic/Test/Low"), num_workers=num_workers, batch_size=1, shuffle=False)
+        eval_data = DataLoader(dataset=get_eval_set("./datasets/LOLv2/Synthetic/Test/Low"), num_workers=num_workers, batch_size=1, shuffle=False)
         output_folder = './output/LOLv2_syn/'
         if ep.perc:
             weight_path = './weights/LOLv2_syn/w_perc.pth'
@@ -129,38 +128,38 @@ if __name__ == '__main__':
             weight_path = './weights/LOLv2_syn/wo_perc.pth'
             
     elif ep.SICE_grad:
-        eval_data = DataLoader(dataset=get_SICE_eval_set("HVI-CIDNet-master/datasets/SICE/SICE_Grad"), num_workers=num_workers, batch_size=1, shuffle=False)
+        eval_data = DataLoader(dataset=get_SICE_eval_set("./datasets/SICE/SICE_Grad"), num_workers=num_workers, batch_size=1, shuffle=False)
         output_folder = './output/SICE_grad/'
         weight_path = './weights/SICE.pth'
         norm_size = False
         
     elif ep.SICE_mix:
-        eval_data = DataLoader(dataset=get_SICE_eval_set("HVI-CIDNet-master/datasets/SICE/SICE_Mix"), num_workers=num_workers, batch_size=1, shuffle=False)
+        eval_data = DataLoader(dataset=get_SICE_eval_set("./datasets/SICE/SICE_Mix"), num_workers=num_workers, batch_size=1, shuffle=False)
         output_folder = './output/SICE_mix/'
         weight_path = './weights/SICE.pth'
         norm_size = False
         
     elif ep.fivek:
-        eval_data = DataLoader(dataset=get_SICE_eval_set("HVI-CIDNet-master/datasets/FiveK/test/input"), num_workers=num_workers, batch_size=1, shuffle=False)
+        eval_data = DataLoader(dataset=get_SICE_eval_set("./datasets/FiveK/test/input"), num_workers=num_workers, batch_size=1, shuffle=False)
         output_folder = './output/fivek/'
         weight_path = './weights/fivek.pth'
         norm_size = False
     
     elif ep.unpaired: 
         if ep.DICM:
-            eval_data = DataLoader(dataset=get_SICE_eval_set("HVI-CIDNet-master/datasets/DICM"), num_workers=num_workers, batch_size=1, shuffle=False)
+            eval_data = DataLoader(dataset=get_SICE_eval_set("./datasets/DICM"), num_workers=num_workers, batch_size=1, shuffle=False)
             output_folder = './output/DICM/'
         elif ep.LIME:
-            eval_data = DataLoader(dataset=get_SICE_eval_set("HVI-CIDNet-master/datasets/LIME"), num_workers=num_workers, batch_size=1, shuffle=False)
+            eval_data = DataLoader(dataset=get_SICE_eval_set("./datasets/LIME"), num_workers=num_workers, batch_size=1, shuffle=False)
             output_folder = './output/LIME/'
         elif ep.MEF:
-            eval_data = DataLoader(dataset=get_SICE_eval_set("HVI-CIDNet-master/datasets/MEF"), num_workers=num_workers, batch_size=1, shuffle=False)
+            eval_data = DataLoader(dataset=get_SICE_eval_set("./datasets/MEF"), num_workers=num_workers, batch_size=1, shuffle=False)
             output_folder = './output/MEF/'
         elif ep.NPE:
-            eval_data = DataLoader(dataset=get_SICE_eval_set("HVI-CIDNet-master/datasets/NPE"), num_workers=num_workers, batch_size=1, shuffle=False)
+            eval_data = DataLoader(dataset=get_SICE_eval_set("./datasets/NPE"), num_workers=num_workers, batch_size=1, shuffle=False)
             output_folder = './output/NPE/'
         elif ep.VV:
-            eval_data = DataLoader(dataset=get_SICE_eval_set("HVI-CIDNet-master/datasets/VV"), num_workers=num_workers, batch_size=1, shuffle=False)
+            eval_data = DataLoader(dataset=get_SICE_eval_set("./datasets/VV"), num_workers=num_workers, batch_size=1, shuffle=False)
             output_folder = './output/VV/'
         elif ep.custome:
             eval_data = DataLoader(dataset=get_SICE_eval_set(ep.custome_path), num_workers=num_workers, batch_size=1, shuffle=False)
@@ -169,6 +168,6 @@ if __name__ == '__main__':
         norm_size = False
         weight_path = ep.unpaired_weights
         
-    eval_net = CIDNet().cuda()
+    eval_net = MFPNet().cuda()
     eval(eval_net, eval_data, weight_path, output_folder,norm_size=norm_size,LOL=ep.lol,v2=ep.lol_v2_real,unpaired=ep.unpaired,alpha=alpha,gamma=ep.gamma)
 
