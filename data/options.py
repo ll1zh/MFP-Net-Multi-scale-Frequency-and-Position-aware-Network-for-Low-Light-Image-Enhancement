@@ -2,10 +2,10 @@ import argparse
 
 def option():
     # Training settings
-    parser = argparse.ArgumentParser(description='CIDNet')
+    parser = argparse.ArgumentParser(description='MFPNet')
     parser.add_argument('--batchSize', type=int, default=8, help='training batch size')
     parser.add_argument('--cropSize', type=int, default=256, help='image crop size (patch size)')
-    parser.add_argument('--nEpochs', type=int, default=1000, help='number of epochs to CIDNet for end')
+    parser.add_argument('--nEpochs', type=int, default=1000, help='number of epochs to MFPNet for end')
     parser.add_argument('--start_epoch', type=int, default=0, help='number of epochs to start, >0 is retrained a pre-trained pth')
     parser.add_argument('--snapshots', type=int, default=10, help='Snapshots for save checkpoints pth')
     parser.add_argument('--lr', type=float, default=1e-4, help='Learning Rate')
@@ -19,20 +19,18 @@ def option():
 
     # warmup training
     parser.add_argument('--warmup_epochs', type=int, default=3, help='warmup_epochs')
-    parser.add_argument('--start_warmup', type=bool, default=True, help='turn False to CIDNet without warmup')
+    parser.add_argument('--start_warmup', type=bool, default=True, help='turn False to MFPNet without warmup')
 
     # CIDNet datasets
-    parser.add_argument('--data_train_own'          , type=str, default='./datasets/SelfBuiltDataset/our485')
-    parser.add_argument('--data_train_lol_blur'     , type=str, default='./datasets/LOL_blur/CIDNet')
+    parser.add_argument('--data_train_lol_blur'     , type=str, default='./datasets/LOL_blur/MFPNet')
     parser.add_argument('--data_train_lol_v1'       , type=str, default='./datasets/LOLv1/our485')
     parser.add_argument('--data_train_lolv2_real'   , type=str, default='./datasets/LOLv2/Real_captured/Train')
     parser.add_argument('--data_train_lolv2_syn'    , type=str, default='./datasets/LOLv2/Synthetic/Train')
-    parser.add_argument('--data_train_SID'          , type=str, default='./datasets/Sony_total_dark/CIDNet')
-    parser.add_argument('--data_train_SICE'         , type=str, default='./datasets/SICE/Dataset/CIDNet')
-    parser.add_argument('--data_train_fivek'        , type=str, default='./datasets/FiveK/CIDNet')
+    parser.add_argument('--data_train_SID'          , type=str, default='./datasets/Sony_total_dark/MFPNet')
+    parser.add_argument('--data_train_SICE'         , type=str, default='./datasets/SICE/Dataset/MFPNet')
+    parser.add_argument('--data_train_fivek'        , type=str, default='./datasets/FiveK/MFPNet')
 
     # validation input
-    parser.add_argument('--data_val_own'            , type=str, default='./datasets/SelfBuiltDataset/eval15/low')
     parser.add_argument('--data_val_lol_blur'       , type=str, default='./datasets/LOL_blur/eval15/low_blur')
     parser.add_argument('--data_val_lol_v1'         , type=str, default='./datasets/LOLv1/eval15/low')
     parser.add_argument('--data_val_lolv2_real'     , type=str, default='./datasets/LOLv2/Real_captured/Test/Low')
@@ -43,7 +41,6 @@ def option():
     parser.add_argument('--data_test_fivek'         , type=str, default='./datasets/FiveK/test/input')
 
     # validation groundtruth
-    parser.add_argument('--data_valgt_own'          , type=str, default='./datasets/SelfBuiltDataset/eval15/high/')
     parser.add_argument('--data_valgt_lol_blur'     , type=str, default='./datasets/LOL_blur/eval15/high_sharp_scaled/')
     parser.add_argument('--data_valgt_lol_v1'       , type=str, default='./datasets/LOLv1/eval15/high/')
     parser.add_argument('--data_valgt_lolv2_real'   , type=str, default='./datasets/LOLv2/Real_captured/Test/Normal/')
@@ -73,7 +70,6 @@ def option():
     
     
     # choose which dataset you want to CIDNet, please only set one "True"
-    parser.add_argument('--own', type=bool, default=False)
     parser.add_argument('--lol_v1', type=bool, default=True)
     parser.add_argument('--lolv2_real', type=bool, default=False)
     parser.add_argument('--lolv2_syn', type=bool, default=False)
