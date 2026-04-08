@@ -12,7 +12,6 @@ import platform
 
 mea_parser = argparse.ArgumentParser(description='Measure')
 mea_parser.add_argument('--use_GT_mean', action='store_true', help='Use the mean of GT to rectify the output of the model')
-mea_parser.add_argument('--own', action='store_true', help='measure SelfBuiltDataset dataset')
 mea_parser.add_argument('--lol', action='store_true', help='measure lolv1 dataset')
 mea_parser.add_argument('--lol_v2_real', action='store_true', help='measure lol_v2_real dataset')
 mea_parser.add_argument('--lol_v2_syn', action='store_true', help='measure lol_v2_syn dataset')
@@ -124,9 +123,6 @@ def metrics(im_dir, label_dir, use_GT_mean):
 
 if __name__ == '__main__':
 
-    if mea.own:
-        im_dir = './output/SelfBuiltDataset/*.jpg'
-        label_dir = 'HVI-CIDNet-master/datasets/SelfBuiltDataset/eval15/high/'
     if mea.lol:
         im_dir = './output/LOLv1/*.png'
         label_dir = 'HVI-CIDNet-master/datasets/LOLdataset/eval15/high/'
