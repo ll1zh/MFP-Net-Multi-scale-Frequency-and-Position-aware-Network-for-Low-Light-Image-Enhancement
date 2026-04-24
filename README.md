@@ -1,4 +1,4 @@
-# Frequency and Position-Aware Deep Network for Low-Light Image Enhancement in HVI Color Space
+# This code is for The Visual Computer submission
 ## 1. Environment
 
 ### python and pytorch version
